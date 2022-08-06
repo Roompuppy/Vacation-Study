@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+    public GameManager gameManager;
     public Rigidbody rbody;
     public Vector3 moveDir;
     public float moveSpeed;
@@ -17,5 +18,14 @@ public class PlayerMove : MonoBehaviour
     void FixedUpdate()
     {
         rbody.MovePosition(rbody.position + moveDir*moveSpeed);
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.GetComponent<Coin>() != null)
+        {
+            gameManager.GotCoin();
+            Destroy(collision.gameObject);
+        }
     }
 }

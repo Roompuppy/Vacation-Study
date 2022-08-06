@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
+    public float rotateSpeed;
+
     void Update()
     {
-        transform.Rotate(Vector3.up, Space.World);
+        transform.Rotate(Vector3.up* rotateSpeed* Time.deltaTime, Space.World);
+        
     }
 }
